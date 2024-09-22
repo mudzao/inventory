@@ -64,16 +64,16 @@ new class extends Component
 
 <section>
     <div class="max-w-xl flex justify-between items-center p-4">
-        <!-- Minus Button with text, in red if decreasing -->
-        <button wire:click="decrementStock" class="text-4xl font-semibold rounded-lg text-red-600">
+       <!-- Minus Button with increased clickable area -->
+       <button wire:click="decrementStock" class="font-semibold rounded-lg text-red-600 px-4 py-2" style="font-size: 26px;">
             -{{ $initialStock - $stock > 0 ? abs($initialStock - $stock) : '' }}
         </button>
-    
+
         <!-- Stock Quantity -->
-        <h1 class="text-4xl font-bold">{{ $stock }}</h1>
-    
-        <!-- Plus Button with text, in green if increasing -->
-        <button wire:click="incrementStock" class="text-4xl font-semibold rounded-lg text-green-600">
+        <h1 class="text-4xl font-bold" style="font-size: 28px;">{{ $stock }}</h1>
+
+        <!-- Plus Button with increased clickable area -->
+        <button wire:click="incrementStock" class="font-semibold rounded-lg text-green-600 px-4 py-2" style="font-size: 26px;">
             +{{ $stock - $initialStock > 0 ? abs($stock - $initialStock) : '' }}
         </button>
     </div>
