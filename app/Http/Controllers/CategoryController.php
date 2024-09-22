@@ -14,16 +14,20 @@ class CategoryController extends Controller
     {
         // Fetch all categories
         $categories = Category::all();
-    
-        // Fetch all low stock items (where stock is less than or equal to reorder quantity)
-        $lowitems = \App\Models\Item::whereColumn('stock', '<=', 'reorder_qty')->get();
-    
+        
+        // Fetch all low stock items, ordered by category and then by name in ascending order
+        $lowitems = \App\Models\Item::whereColumn('stock', '<=', 'reorder_qty')
+                    ->orderBy('category_id') // First sort by category
+                    ->orderBy('name', 'asc') // Then sort by name (ascending)
+                    ->get();
+        
         // Return the categories and low stock items to the 'home' view
         return view('home', [
             'categories' => $categories,
             'lowitems' => $lowitems
         ]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
