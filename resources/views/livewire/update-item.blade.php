@@ -7,11 +7,13 @@ new class extends Component
 {
     public Item $item;
     public int $stock;
+    public int $initialStock;
 
     public function mount(Item $item)
     {
         $this->item = $item;
         $this->stock = $item->stock;
+        $this->initialStock = $item->stock; // Track the initial stock
     }
 
     public function incrementStock()
@@ -57,39 +59,36 @@ new class extends Component
         // Redirect to the category's show page after updating the stock
         return redirect()->route('categories.show', $this->item->category_id);
     }
-
-
 };
 ?>
 
 <section>
     <div class="max-w-xl flex justify-between items-center p-4">
-        <!-- Minus Button -->
-        <button wire:click="decrementStock" class=" rounded-lg">
-            <i class="fas fa-minus"></i> <!-- Font Awesome minus icon -->
+        <!-- Minus Button with text, in red if decreasing -->
+        <button wire:click="decrementStock" class="text-2xl font-semibold rounded-lg text-red-600">
+            -{{ $initialStock - $stock > 0 ? abs($initialStock - $stock) : '' }}
         </button>
     
         <!-- Stock Quantity -->
-        <h1 class="text-3xl font-bold">{{ $stock }}</h1>
+        <h1 class="text-4xl font-bold">{{ $stock }}</h1>
     
-        <!-- Plus Button -->
-        <button wire:click="incrementStock" class=" rounded-lg">
-            <i class="fas fa-plus"></i> <!-- Font Awesome plus icon -->
+        <!-- Plus Button with text, in green if increasing -->
+        <button wire:click="incrementStock" class="text-2xl font-semibold rounded-lg text-green-600">
+            +{{ $stock - $initialStock > 0 ? abs($stock - $initialStock) : '' }}
         </button>
     </div>
     
-
-<!-- Update Button -->
+    <!-- Update Button -->
     <div>
         <x-primary-button wire:click="updateStock" class="w-full flex justify-center items-center">
             <span>Update Stock</span>
         </x-primary-button>
     </div>
 
-<!-- Success Message -->
-@if (session()->has('message'))
-    <div class="mt-2 text-green-600">
-        {{ session('message') }}
-    </div>
-@endif
+    <!-- Success Message -->
+    @if (session()->has('message'))
+        <div class="mt-2 text-green-600">
+            {{ session('message') }}
+        </div>
+    @endif
 </section>
