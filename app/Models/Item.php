@@ -14,6 +14,7 @@ class Item extends Model
         'name',
         'stock',
         'category_id',
+        'reorder_qty',
     ];
 
     public function category(): BelongsTo

@@ -35,15 +35,21 @@
             <!-- Name Input -->
             <div>
                 <x-input-label for="name" :value="__('Name')" />
-                <x-text-input wire:model="form.name" id="name" class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
+                <x-text-input wire:model="form.name" id="name" class="block mt-1 w-full" type="text" name="name" required autocomplete="name" />
             </div>
 
             <!-- Stock Input (Number) -->
             <div class="mt-4">
                 <x-input-label for="stock" :value="__('Initial Stock')" />
-                <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock" required autofocus />
+                <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock" required />
             </div>
 
+            <!-- Reorder Input (Number) -->
+            <div class="mt-4">
+                <x-input-label for="reorder_qty" :value="__('Re-order Quantity')" />
+                <x-text-input id="reorder_qty" class="block mt-1 w-full" type="number" name="reorder_qty" required />
+            </div>
+            
             <!-- Hidden Category ID Input -->
             <input type="hidden" name="category_id" value="{{ $category->id }}">
 
@@ -53,6 +59,9 @@
                 </x-primary-button>
             </div>
         </form>
+        </div>
+        <div class="mx-6 p-4 text-sm">
+            Click <a href="{{ route('categories.edit', $category->id) }}">here</a> to edit this category
         </div>
     </div>
 </x-app-layout>

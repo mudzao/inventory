@@ -33,6 +33,8 @@ class ItemController extends Controller
             'name' => 'required|string|max:255',
             'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
+            'stock' => 'required|integer',
+            'reorder_qty' => 'nullable|integer|min:0', // Optional, non-negative integer
         ]);
     
         // Create the item
@@ -40,6 +42,7 @@ class ItemController extends Controller
         $item->name = $validatedData['name'];
         $item->stock = $validatedData['stock'];
         $item->category_id = $validatedData['category_id'];
+        $item->reorder_qty = $validatedData['reorder_qty'] ?? 0; // Default to 0 if not provided
         $item->save();
     
         // Redirect back to the category's show page after successful creation
@@ -65,24 +68,44 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Item $item)
     {
-        //
+        // Pass the item to the edit view
+        return view('items.edit', compact('item'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Item $item)
     {
-        //
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'stock' => 'required|integer|min:0',
+            'reorder_qty' => 'nullable|integer|min:0', // Optional field for reorder quantity
+        ]);
+
+        // Update the item with the validated data
+        $item->update($validatedData);
+
+        // Redirect back to a relevant page, for example, the item list or show page
+        return redirect()->route('items.show', $item->id)->with('success', 'Item updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Item $item)
     {
-        //
+        // Get the category ID before deleting the item
+        $categoryId = $item->category_id;
+    
+        // Delete the item
+        $item->delete();
+    
+        // Redirect to the categories.show page with the category ID
+        return redirect()->route('categories.show', $categoryId)->with('success', 'Item deleted successfully.');
     }
 }
