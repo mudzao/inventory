@@ -19,12 +19,9 @@
         @endforeach
         </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
+            <h2 class="mx-6 p-4 text-lg font-medium text-gray-900">Low Stock Items</h2>
             <div class="mx-6 p-4 bg-white shadow rounded-lg">
-                <h2 class="text-lg font-medium text-gray-900">
-                    {{ __('Low Stock Items') }}
-                </h2>
-
-                <div class="mt-4 space-y-2">
+                <div class="space-y-2">
                     @if($lowitems->isEmpty())
                     <p class="text-gray-600">No low stock items.</p>
                     @else
