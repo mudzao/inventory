@@ -9,14 +9,19 @@
                 <div class="mx-6 p-4 bg-white shadow rounded-lg">
                     <div class="max-w-xl flex justify-between items-center">
                         <!-- Item Name on the left -->
-                        <span class="text-md">{{ $item->name }}</span>
+                        <span class="text-md {{ $item->stock <= $item->reorder_qty ? 'text-red-600' : '' }}">
+                            {{ $item->name }}
+                        </span>
             
                         <!-- Item Stock on the right -->
-                        <span class="text-gray-600">{{ $item->stock }}</span>
+                        <span class="text-gray-600 {{ $item->stock <= $item->reorder_qty ? 'text-red-600' : '' }}">
+                            {{ $item->stock }}
+                        </span>
                     </div>
                 </div>
             </a>
-            @endforeach            
+            @endforeach
+                       
         </div>
 
 

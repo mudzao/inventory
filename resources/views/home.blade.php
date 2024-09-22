@@ -29,23 +29,23 @@
                     <p class="text-gray-600">No low stock items.</p>
                     @else
                         @foreach($lowitems as $item)
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-700 text-sm">
-                                    {{ $item->category->name }} - {{ $item->name }}
-                                </span>
-                            
-                                <!-- Stock Change Indicator and Stock at Change -->
-                                <span class="text-sm font-bold text-red-600">
-                                    {{ $item->stock }}
-                                </span>
-                            </div>
+                        <div class="flex justify-between items-center py-2">
+                            <!-- Category and Item Name, wrapped in an anchor tag -->
+                            <a href="{{ route('items.show', $item->id) }}" class="text-gray-700 text-sm">
+                                {{ $item->category->name }} - {{ $item->name }}
+                            </a>
                         
-            
-                            <!-- Divider -->
-                            @if (!$loop->last)
-                                <hr class="border-t border-gray-300">
-                            @endif
-                        @endforeach
+                            <!-- Stock Quantity -->
+                            <span class="text-sm font-bold text-red-600">
+                                {{ $item->stock }}
+                            </span>
+                        </div>
+                    
+                        <!-- Divider -->
+                        @if (!$loop->last)
+                            <hr class="border-t border-gray-300">
+                        @endif
+                        @endforeach                
                     @endif
                 </div>
             </div>
