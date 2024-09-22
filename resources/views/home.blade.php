@@ -32,7 +32,7 @@
                         <div class="flex justify-between items-center py-2">
                             <!-- Category and Item Name, wrapped in an anchor tag -->
                             <a href="{{ route('items.show', $item->id) }}" class="text-gray-700">
-                                {{ $item->category->name }} - {{ $item->name }}
+                                {{ $item->name }}
                             </a>
                         
                             <!-- Stock Quantity -->
