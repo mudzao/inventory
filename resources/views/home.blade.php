@@ -31,12 +31,12 @@
                         @foreach($lowitems as $item)
                         <div class="flex justify-between items-center py-2">
                             <!-- Category and Item Name, wrapped in an anchor tag -->
-                            <a href="{{ route('items.show', $item->id) }}" class="text-gray-700 text-sm">
+                            <a href="{{ route('items.show', $item->id) }}" class="text-gray-700">
                                 {{ $item->category->name }} - {{ $item->name }}
                             </a>
                         
                             <!-- Stock Quantity -->
-                            <span class="text-sm font-bold text-red-600">
+                            <span class="font-bold text-red-600">
                                 {{ $item->stock }}
                             </span>
                         </div>
