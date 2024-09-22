@@ -18,8 +18,37 @@
         </a>
         @endforeach
         </div>
-        <div class="mx-6 p-4 text-sm">
-                Click <a href="{{ route('categories.create')}}">here</a> to add new category
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
+            <div class="mx-6 p-4 bg-white shadow rounded-lg">
+                <h2 class="text-lg font-medium text-gray-900">
+                    {{ __('Low Stock Items') }}
+                </h2>
+
+                <div class="mt-4 space-y-2">
+                    @if($lowitems->isEmpty())
+                    <p class="text-gray-600">No low stock items.</p>
+                    @else
+                        @foreach($lowitems as $item)
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-gray-700 text-sm">
+                                    {{ $item->category->name }} - {{ $item->name }}
+                                </span>
+                            
+                                <!-- Stock Change Indicator and Stock at Change -->
+                                <span class="text-sm font-bold text-red-600">
+                                    {{ $item->stock }}
+                                </span>
+                            </div>
+                        
+            
+                            <!-- Divider -->
+                            @if (!$loop->last)
+                                <hr class="border-t border-gray-300">
+                            @endif
+                        @endforeach
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 </x-app-layout>

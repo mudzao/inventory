@@ -48,6 +48,6 @@
             <div class="mx-6 p-4 text-sm">
                 Click <a href="{{ route('items.edit', $item->id) }}">here</a> to edit this item
             </div>
-    </div>
+        </div>
     </div>
 </x-app-layout>
