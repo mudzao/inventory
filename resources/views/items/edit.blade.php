@@ -7,8 +7,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mx-6 p-4 sm:p-8 bg-white shadow rounded-lg">
-            <form action="{{ route('items.store') }}" method="POST">
+            <form action="{{ route('items.update', $item->id) }}" method="POST">
             @csrf
+            @method('PUT')
                 <!-- Name Input -->
                 <div>
                     <x-input-label for="name" :value="__('Name')" />

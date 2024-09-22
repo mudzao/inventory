@@ -91,7 +91,7 @@ class ItemController extends Controller
         $item->update($validatedData);
 
         // Redirect back to a relevant page, for example, the item list or show page
-        return redirect()->route('items.show', $item->id)->with('success', 'Item updated successfully');
+        return redirect()->route('categories.show', $item->category->id)->with('success', 'Item updated successfully');
     }
 
     /**
