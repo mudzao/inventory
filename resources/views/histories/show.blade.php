@@ -11,7 +11,9 @@
                             <div class="flex justify-between items-center py-2">
                                 <!-- Date and Time (e.g., 'Saturday, 17/9/2024 2:00PM') -->
                                 <span class="text-gray-700 text-sm">
-                                    {{ $history->created_at->setTimezone('Asia/Kuala_Lumpur')->format('D, d/n/y g:i A') }}
+                                    <a href="{{ route('items.show', $history->item->id) }}" class="text-gray-700">
+                                    {{ $history->created_at->setTimezone('Asia/Kuala_Lumpur')->format('d/n/y') }} : {{ $history->item->name }}
+                                    </a>
                                 </span>
                             
                                 <!-- Stock Change Indicator and Stock at Change -->
