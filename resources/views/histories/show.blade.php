@@ -4,7 +4,20 @@
     </x-slot>
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
-            <h2 class="mx-6 p-4 text-lg font-medium text-gray-900">Stock Update History</h2>
+            <div class="mx-6 p-2 bg-white shadow rounded-lg mb-6">
+                <select id="history-filter" class="border border-transparent rounded p-2 w-full focus:border-transparent focus:ring-0">
+                    <option value="today" {{ request('filter') === 'today' ? 'selected' : '' }}>
+                        Today
+                    </option>
+                    <option value="week" {{ request('filter') === 'week' ? 'selected' : '' }}>
+                        This Week
+                    </option>
+                    <option value="month" {{ request('filter') === 'month' ? 'selected' : '' }}>
+                        This Month
+                    </option>
+                </select>
+            </div>            
+
             <div class="mx-6 p-4 bg-white shadow rounded-lg">
                 <div class="space-y-2">
                         @foreach($histories as $history)
@@ -22,7 +35,6 @@
                                 </span>
                             </div>
                         
-            
                             <!-- Divider -->
                             @if (!$loop->last)
                                 <hr class="border-t border-gray-300">
@@ -31,10 +43,17 @@
             
                         <!-- Pagination Links -->
                         <div class="mt-4">
-                            {{ $histories->links() }}
+                            {{ $histories->appends(request()->query())->links() }}
                         </div>
                 </div>
             </div>
         </div>       
     </div>
+
+    <script>
+        document.getElementById('history-filter').addEventListener('change', function () {
+            const filter = this.value;
+            window.location.href = `?filter=${filter}`;
+        });
+    </script>
 </x-app-layout>

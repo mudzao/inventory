@@ -10,15 +10,41 @@ class HistoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Fetch all categories
-        $histories = History::orderBy('created_at', 'desc')->paginate(20);
-        
-        // Return the categories and low stock items to the 'home' view
+        // Get the filter from the query string or default to 'today'
+        $filter = $request->query('filter', 'today');
+    
+        // Define the time ranges for filtering
+        switch ($filter) {
+            case 'week':
+                $startOfWeek = now()->startOfWeek(); // Sunday
+                $endOfWeek = now()->endOfWeek();
+                $histories = History::whereBetween('created_at', [$startOfWeek, $endOfWeek])
+                                    ->orderBy('created_at', 'desc')
+                                    ->paginate(20);
+                break;
+    
+            case 'month':
+                $startOfMonth = now()->startOfMonth();
+                $endOfMonth = now()->endOfMonth();
+                $histories = History::whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                                    ->orderBy('created_at', 'desc')
+                                    ->paginate(20);
+                break;
+    
+            case 'today':
+            default:
+                $histories = History::whereDate('created_at', now())
+                                    ->orderBy('created_at', 'desc')
+                                    ->paginate(20);
+                break;
+        }
+    
+        // Return the histories view with the filtered results
         return view('histories.show', [
             'histories' => $histories
-        ]);        
+        ]);
     }
 
     /**

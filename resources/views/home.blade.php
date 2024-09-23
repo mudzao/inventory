@@ -19,7 +19,7 @@
         @endforeach
         </div>
         <div class="mx-6 p-4 text-md">
-            Click <a class="border-b-2 border-red-500 pb-1" href="{{ route ('histories.show')}}">here</a> to view stock update history
+            Click <a href="{{ route ('histories.show')}}"><span class="border-red-500 border-b-2 pb-1" >here</span></a> to view stock update history
         </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
             <h2 class="mx-6 p-4 text-lg font-medium text-gray-900">Low Stock Items</h2>
