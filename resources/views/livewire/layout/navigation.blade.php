@@ -23,8 +23,9 @@ new class extends Component
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('home') }}" wire:navigate>
-                        Kafe SERVE
+                    <a href="{{ route('home') }}" wire:navigate class="flex items-center">
+                        <img src="{{ asset('logo.png') }}" alt="Logo" class="w-7 mr-2" />
+                        <!--<span class="px-2 text-md text-gray-900">Kafe SERVE</span>-->
                     </a>
                 </div>
 
