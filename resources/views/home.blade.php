@@ -18,8 +18,13 @@
         </a>
         @endforeach
         </div>
-        <div class="mx-6 p-4 text-md">
-            Click <a href="{{ route ('histories.show')}}"><span class="border-red-500 border-b-2 pb-1" >here</span></a> to view stock update history
+        
+        <div class="mx-6 text-md">
+            <x-primary-button class="w-full flex justify-center items-center bg-gray-500">
+                <a href="{{ route ('histories.show')}}" class="w-full flex justify-center items-center">
+                    <span>Check Daily Stock Update</span>
+                </a>
+            </x-primary-button>
         </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
             <h2 class="mx-6 p-4 text-lg font-medium text-gray-900">Low Stock Items</h2>
