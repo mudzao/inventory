@@ -2,9 +2,9 @@
     <x-slot name="header">
             <span class="font-semibold text-md text-gray-800 leading-tight">{{ __('Main') }}</span>
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        @foreach ($categories as $category)
+    <div class="py-2">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
+            @foreach ($categories as $category)
         <a href="{{ route('categories.show', $category->id) }}" class="block mb-4">
             <div class="mx-6 p-4 bg-white shadow rounded-lg">
                 <div class="max-w-xl flex justify-between items-center">

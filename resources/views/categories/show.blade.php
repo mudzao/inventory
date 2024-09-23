@@ -2,8 +2,8 @@
     <x-slot name="header">
          <a class="font-semibold text-md text-gray-800 leading-tight" href="{{ route('home') }}">Main / </a>{{ $category->name }}
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-2">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
             @foreach ($items as $item)
             <a href="{{ route('items.show', $item->id) }}" class="block mb-4">
                 <div class="mx-6 p-4 bg-white shadow rounded-lg">

@@ -2,9 +2,9 @@
     <x-slot name="header">
          <a class="font-semibold text-md text-gray-800 leading-tight" href="{{ route('home') }}">Main / </a><a class="font-semibold text-md text-gray-800 leading-tight" href="{{ route('categories.show', $item->category->id) }}">{{ $item->category->name }}</a> / {{ $item->name}}
     </x-slot>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="mx-6 p-4 bg-white shadow rounded-lg">
+    <div class="py-2">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
+            <div class="mx-6 p-4 bg-white shadow rounded-lg">
                     <livewire:update-item :item="$item" />
                 </div>
         </div>
