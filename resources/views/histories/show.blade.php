@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-            <span class="font-semibold text-md text-gray-800 leading-tight">{{ __('Main') }}</span>
+            <a class="font-semibold text-md text-gray-800 leading-tight" href="{{route('home')}}">{{ __('Main') }}</a> \ Stock Update History
     </x-slot>
     <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-6">
