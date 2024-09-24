@@ -20,6 +20,9 @@
 
             <div class="mx-6 p-4 bg-white shadow rounded-lg">
                 <div class="space-y-2">
+                        @if($histories->isEmpty())
+                        <p class="text-gray-600">No stock update history available.</p>
+                        @else
                         @foreach($histories as $history)
                             <div class="flex justify-between items-center py-2">
                                 <!-- Date and Time (e.g., 'Saturday, 17/9/2024 2:00PM') -->
@@ -40,6 +43,7 @@
                                 <hr class="border-t border-gray-300">
                             @endif
                         @endforeach
+                        @endif
             
                         <!-- Pagination Links -->
                         <div class="mt-4">
